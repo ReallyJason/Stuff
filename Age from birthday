@@ -26,13 +26,13 @@ int birthday (){
     int day, year;
     std::time_t t = std::time(nullptr);
     std::tm *const pTInfo = std::localtime(&t);
-    int mdate=pTInfo->tm_mday;
-    int mmonth=pTInfo->tm_mon;
+    int mdate=pTInfo->tm_mday; //day in the month
+    int mmonth=pTInfo->tm_mon; //the #month-1
     cout << "When is your birthday? ";
     cin >> month >> day >> year;
     int m=cmonth(month);
     
-    if(m<mmonth+1)return (1900 + pTInfo->tm_year-year-0);
+    if(m<mmonth+1)return (1900 + pTInfo->tm_year-year-0); //tm_year shows the number of years since 1900
     else if (m==mmonth+1){
         if (day<mdate) return (1900 + pTInfo->tm_year-year-0);
     }
