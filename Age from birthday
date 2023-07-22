@@ -109,7 +109,7 @@ void birthday (){
     else if (m==mmonth+1){
         if (day<mdate)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old.";
     }
-    cout << "You are " << (1900 + pTInfo->tm_year-year-1) << " years old.";
+    else cout << "You are " << (1900 + pTInfo->tm_year-year-1) << " years old.";
 }
 
 int main(){
