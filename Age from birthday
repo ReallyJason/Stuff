@@ -107,7 +107,8 @@ void birthday (){
     
     if(m<mmonth+1)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old."; //tm_year shows the number of years since 1900
     else if (m==mmonth+1){
-        if (day<mdate)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old.";
+        if (day<=mdate)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old.";
+        else cout << "You are " << (1900 + pTInfo->tm_year-year-1) << " years old.";
     }
     else cout << "You are " << (1900 + pTInfo->tm_year-year-1) << " years old.";
 }
