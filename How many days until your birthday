@@ -95,10 +95,22 @@ int cmonth(string month, int day){
 }
 
 void nmonths(int m, int day, int mmonth, int mdate){
+    int a[12]{1}
+    
+    
+    
+    
     if(m==mmonth+1){
         if(mdate>day)cout << "Your Birthday will be in " << (day-mdate+365) << " days.";
         if(mdate<day)cout << "Your Birthday will be in " << day-mdate << " days.";
         if(mdate==day)cout << "Today is your birthday!";
+    }
+    if(m>mmonth+1){
+        
+        
+        
+    }
+    if(m<mmonth+1){
     }
 }
 
