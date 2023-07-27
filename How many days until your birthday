@@ -94,23 +94,27 @@ int cmonth(string month, int day){
     exit(0);
 }
 
-void nmonths(int m, int day, int mmonth, int mdate){
-    int a[12]{1}
-    
-    
-    
-    
-    if(m==mmonth+1){
+void nmonths(int bm, int day, int mmonth, int mdate){
+    int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+
+    if(bm==mmonth+1){
         if(mdate>day)cout << "Your Birthday will be in " << (day-mdate+365) << " days.";
         if(mdate<day)cout << "Your Birthday will be in " << day-mdate << " days.";
         if(mdate==day)cout << "Today is your birthday!";
     }
-    if(m>mmonth+1){
-        
-        
-        
+    if(bm>mmonth+1){
+        if(bm-mmonth==2){
+            static int bdate=(a[mmonth+1][1]-mdate)+day;
+            cout << "Your Birthday will be in " << bdate << " days.";
+            exit(0);
+        }
+        else for(int i=mmonth+1;i<bm;i++){
+            static int bdate=bdate+a[i][1];
+        }
+        static int bdate=(a[mmonth+1][1]-mdate)+day;
+        cout << "Your Birthday will be in " << bdate << " days.";
     }
-    if(m<mmonth+1){
+    if(bm<mmonth+1){
     }
 }
 
@@ -123,11 +127,11 @@ void birthday (){
     int mmonth=pTInfo->tm_mon; //the #month-1
     cout << "When is your birthday? ";
     cin >> month >> day >> year;
-    int m=cmonth(month, day);
-    nmonths(m, day, mmonth, mdate);
+    int bm=cmonth(month, day);
+    nmonths(bm, day, mmonth, mdate);
     
-    if(m<mmonth+1)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old."; //tm_year shows the number of years since 1900
-    else if (m==mmonth+1){
+    if(bm<mmonth+1)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old."; //tm_year shows the number of years since 1900
+    else if (bm==mmonth+1){
         if (day<=mdate)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old.";
         else cout << "You are " << (1900 + pTInfo->tm_year-year-1) << " years old.";
     }
