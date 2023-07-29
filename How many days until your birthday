@@ -6,39 +6,6 @@ using std::cout;
 using std::string;
 using std::endl;
 
-void nmonths(int bm, int day, int mmonth, int mdate){
-    int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
-    static int bdate=0;
-
-    if(bm==mmonth+1){
-        if(mdate>day)cout << "Your birthday will be in " << (day-mdate+365) << " days.";
-        if(mdate<day)cout << "Your birthday will be in " << day-mdate << " days.";
-        if(mdate==day)cout << "Today is your birthday!";
-    }
-    if(bm>mmonth+1){
-        if(bm-mmonth==2){
-            bdate=((a[mmonth][0]-mdate)+day);
-            cout << "Your birthday will be in " << bdate << " days.";
-            exit(0);
-        }
-        else for(int i=mmonth+2;i<bm;i++){
-            bdate=bdate+a[i][0];
-        }
-        bdate=bdate+(a[mmonth][0]-mdate)+day;
-        cout << "Your birthday will be in " << bdate << " days.";
-    }
-    if(bm<mmonth+1){
-        if(mmonth+1==12 && bm==1){
-            bdate=((a[mmonth%11][0]-mdate)+day);
-            cout << "Your birthday will be in " << bdate << " days.";
-        }
-        else{
-            for(int i=mmonth+2;i<bm;i++)
-            
-        }
-    }
-}
-
 void birthday (){
     string month;
     int day, year, bm=100;
@@ -145,9 +112,38 @@ void birthday (){
         cout << "You've incorrectly spelled the month.";
         exit(0);
     }
-
-    nmonths(bm, day, mmonth, mdate);
     
+    int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+    static int bdate=0;
+    if(bm==mmonth+1){
+        if(mdate>day)cout << "Your birthday will be in " << (day-mdate+365) << " days.";
+        if(mdate<day)cout << "Your birthday will be in " << day-mdate << " days.";
+        if(mdate==day)cout << "Today is your birthday!";
+    }
+    if(bm>mmonth+1){
+        if(bm-mmonth==2){
+            bdate=((a[mmonth][0]-mdate)+day);
+            cout << "Your birthday will be in " << bdate << " days.";
+            exit(0);
+        }
+        else for(int i=mmonth+1;i<bm-1;i++)bdate=bdate+a[i][0];
+        bdate=bdate+(a[mmonth][0]-mdate)+day;
+        cout << "Your birthday will be in " << bdate << " days.";
+    }
+    if(bm<mmonth+1){
+        if(mmonth+1==12 && bm==1){
+            bdate=((a[mmonth%11][0]-mdate)+day);
+            cout << "Your birthday will be in " << bdate << " days.";
+        }
+        else{
+            for(int i=mmonth+1;i<(bm+mmonth);i++){
+                bdate=bdate+a[i%12][0];
+                cout << bdate << endl;
+            }
+            bdate=bdate+(a[mmonth][0]-mdate)+day;
+            cout << "Your birthday will be in " << bdate << " days.";
+        }
+    }
 }
 
 int main(){
