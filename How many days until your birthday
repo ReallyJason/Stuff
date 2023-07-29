@@ -4,6 +4,7 @@
 using std::cin;
 using std::cout;
 using std::string;
+using std::endl;
 
 int cmonth(string month, int day){
     if (month=="January"){
@@ -96,6 +97,7 @@ int cmonth(string month, int day){
 
 void nmonths(int bm, int day, int mmonth, int mdate){
     int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+    static int bdate;
 
     if(bm==mmonth+1){
         if(mdate>day)cout << "Your Birthday will be in " << (day-mdate+365) << " days.";
@@ -104,14 +106,14 @@ void nmonths(int bm, int day, int mmonth, int mdate){
     }
     if(bm>mmonth+1){
         if(bm-mmonth==2){
-            static int bdate=(a[mmonth+1][1]-mdate)+day;
+            bdate=((a[mmonth][1]-mdate)+day);
             cout << "Your Birthday will be in " << bdate << " days.";
             exit(0);
         }
-        else for(int i=mmonth+1;i<bm;i++){
-            static int bdate=bdate+a[i][1];
+        else for(int i=mmonth+2;i<bm;i++){
+            bdate=bdate+a[i][1];
         }
-        static int bdate=(a[mmonth+1][1]-mdate)+day;
+        bdate=bdate+(a[mmonth][1]-mdate)+day;
         cout << "Your Birthday will be in " << bdate << " days.";
     }
     if(bm<mmonth+1){
@@ -121,10 +123,18 @@ void nmonths(int bm, int day, int mmonth, int mdate){
 void birthday (){
     string month;
     int day, year;
+    
+    setenv("TZ", "EST5EDT", 1); // Set the timezone to Eastern Time (ET)
+    tzset(); // Apply the changes
+    time_t currentTime; // Get the current time in Eastern Time
+    time(&currentTime);
+    struct tm *localTime = localtime(&currentTime); // Convert the time to local time (Eastern Time)
+    
     std::time_t t = std::time(nullptr);
     std::tm *const pTInfo = std::localtime(&t);
     int mdate=pTInfo->tm_mday; //day in the month
     int mmonth=pTInfo->tm_mon; //the #month-1
+    
     cout << "When is your birthday? ";
     cin >> month >> day >> year;
     int bm=cmonth(month, day);
