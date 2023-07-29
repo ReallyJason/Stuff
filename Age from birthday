@@ -5,105 +5,111 @@ using std::cin;
 using std::cout;
 using std::string;
 
-int cmonth(string month, int day){
-    if (month=="January"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 1;
-    }
-    if (month=="February"){
-        if(day>29 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 2;
-    }
-    if (month=="March"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 3;
-    }
-    if (month=="April"){
-        if(day>30 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 4;
-    }
-    if (month=="May"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 5;
-    }
-    if (month=="June"){
-        if(day>30 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 6;
-    }
-    if (month=="July"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 7;
-    }
-    if (month=="August"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 8;
-    }
-    if (month=="September"){
-        if(day>30 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 9;
-    }
-    if (month=="October"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 10;
-    }
-    if (month=="November"){
-        if(day>30 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 11;
-    }
-    if (month=="December"){
-        if(day>31 || day<1){
-            cout << "The day of your birth month is impossible.";
-            exit(0);
-        }
-        return 12;
-    }
-    cout << "You've incorrectly spelled the month.";
-    exit(0);
-}
-
 void birthday (){
     string month;
-    int day, year;
+    int day, year, m=100;
+    
+    setenv("TZ", "EST5EDT", 1); // Set the timezone to Eastern Time (ET)
+    tzset(); // Apply the changes
+    time_t currentTime; // Get the current time in Eastern Time
+    time(&currentTime);
+    struct tm *localTime = localtime(&currentTime); // Convert the time to local time (Eastern Time)
+    
     std::time_t t = std::time(nullptr);
     std::tm *const pTInfo = std::localtime(&t);
     int mdate=pTInfo->tm_mday; //day in the month
     int mmonth=pTInfo->tm_mon; //the #month-1
     cout << "When is your birthday? ";
     cin >> month >> day >> year;
-    int m=cmonth(month, day);
+    
+    if (month=="January"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=1;
+    }
+    if (month=="February"){
+        if(day>29 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=2;
+    }
+    if (month=="March"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=3;
+    }
+    if (month=="April"){
+        if(day>30 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=4;
+    }
+    if (month=="May"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=5;
+    }
+    if (month=="June"){
+        if(day>30 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=6;
+    }
+    if (month=="July"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=7;
+    }
+    if (month=="August"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=8;
+    }
+    if (month=="September"){
+        if(day>30 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=9;
+    }
+    if (month=="October"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=10;
+    }
+    if (month=="November"){
+        if(day>30 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=11;
+    }
+    if (month=="December"){
+        if(day>31 || day<1){
+            cout << "The day of your birth month is impossible.";
+            exit(0);
+        }
+        m=12;
+    }
+    if(m<1 || m>12){
+        cout << "You've incorrectly spelled the month.";
+        exit(0);
+    }
     
     if(m<mmonth+1)cout << "You are " << (1900 + pTInfo->tm_year-year-0) << " years old."; //tm_year shows the number of years since 1900
     else if (m==mmonth+1){
