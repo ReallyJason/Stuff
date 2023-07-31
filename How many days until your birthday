@@ -7,8 +7,8 @@ using std::string;
 using std::endl;
 
 void birthday (){
-    string month;
-    int day, year, bm=100;
+    string bMonth;
+    int bDay, bYear, b_month_number=100;
     int a[12][1];
     
     setenv("TZ", "EST5EDT", 1); // Set the timezone to Eastern Time (ET)
@@ -19,138 +19,139 @@ void birthday (){
     
     std::time_t t = std::time(nullptr);
     std::tm *const pTInfo = std::localtime(&t);
-    int mdate=pTInfo->tm_mday; //day in the month
-    int mmonth=pTInfo->tm_mon; //the #month-1
-    int ThisYear=(1900 + pTInfo->tm_year-year-0);
+    int day_in_month=pTInfo->tm_mday; //day in the month
+    int todayMonth=pTInfo->tm_mon; //the #month-1
+    int thisYear=(1900 + pTInfo->tm_year); //tm_year shows the number of years since 1900
     
     cout << "When is your birthday? ";
-    cin >> month >> day >> year;
+    cin >> bMonth >> bDay >> bYear;
     
     {
-    if (month=="January"){
-        if(day>31 || day<1){
+    if (bMonth=="January"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=1;
+        b_month_number=1;
     }
-    if (month=="February"){
-        if(day>29 || day<1){
+    if (bMonth=="February"){
+        if(bDay>29 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=2;
+        b_month_number=2;
     }
-    if (month=="March"){
-        if(day>31 || day<1){
+    if (bMonth=="March"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=3;
+        b_month_number=3;
     }
-    if (month=="April"){
-        if(day>30 || day<1){
+    if (bMonth=="April"){
+        if(bDay>30 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=4;
+        b_month_number=4;
     }
-    if (month=="May"){
-        if(day>31 || day<1){
+    if (bMonth=="May"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=5;
+        b_month_number=5;
     }
-    if (month=="June"){
-        if(day>30 || day<1){
+    if (bMonth=="June"){
+        if(bDay>30 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=6;
+        b_month_number=6;
     }
-    if (month=="July"){
-        if(day>31 || day<1){
+    if (bMonth=="July"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=7;
+        b_month_number=7;
     }
-    if (month=="August"){
-        if(day>31 || day<1){
+    if (bMonth=="August"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=8;
+        b_month_number=8;
     }
-    if (month=="September"){
-        if(day>30 || day<1){
+    if (bMonth=="September"){
+        if(bDay>30 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=9;
+        b_month_number=9;
     }
-    if (month=="October"){
-        if(day>31 || day<1){
+    if (bMonth=="October"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=10;
+        b_month_number=10;
     }
-    if (month=="November"){
-        if(day>30 || day<1){
+    if (bMonth=="November"){
+        if(bDay>30 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=11;
+        b_month_number=11;
     }
-    if (month=="December"){
-        if(day>31 || day<1){
+    if (bMonth=="December"){
+        if(bDay>31 || bDay<1){
             cout << "The day of your birth month is impossible.";
             exit(0);
         }
-        bm=12;
+        b_month_number=12;
     }
-    if(bm<1 || bm>12){
+    if(b_month_number<1 || b_month_number>12){
         cout << "You've incorrectly spelled the month.";
         exit(0);
     }
     }
-    if(bm<mmonth+1){
-        if((((ThisYear+1) % 4 == 0) && ((ThisYear+1) % 100 != 0)) || ((ThisYear+1) % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+    
+    if(b_month_number<todayMonth+1){
+        if((((thisYear+1) % 4 == 0) && ((thisYear+1) % 100 != 0)) || ((thisYear+1) % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
         else int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     }
     else{
-        if(((ThisYear % 4 == 0) && (ThisYear % 100 != 0)) || (ThisYear % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+        if(((thisYear % 4 == 0) && (thisYear % 100 != 0)) || (thisYear % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
         else int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     }
     static int bdate=0;
     
-    if(bm==mmonth+1){
-        if(mdate>day)cout << "Your birthday will be in " << (day-mdate+365) << " days.";
-        if(mdate<day)cout << "Your birthday will be in " << day-mdate << " days.";
-        if(mdate==day)cout << "Today is your birthday!";
+    if(b_month_number==todayMonth+1){
+        if(day_in_month>bDay)cout << "Your birthday will be in " << (bDay-day_in_month+365) << " days.";
+        if(day_in_month<bDay)cout << "Your birthday will be in " << bDay-day_in_month << " days.";
+        if(day_in_month==bDay)cout << "Today is your birthday!";
     }
-    if(bm>mmonth+1){
-        if(bm-mmonth==2){
-            bdate=((a[mmonth][0]-mdate)+day);
+    if(b_month_number>todayMonth+1){
+        if(b_month_number-todayMonth==2){
+            bdate=((a[todayMonth][0]-day_in_month)+bDay);
             cout << "Your birthday will be in " << bdate << " days.";
             exit(0);
         }
-        else for(int i=mmonth+1;i<bm-1;i++)bdate=bdate+a[i][0];
-        bdate=bdate+(a[mmonth][0]-mdate)+day;
+        else for(int i=todayMonth+1;i<b_month_number-1;i++)bdate=bdate+a[i][0];
+        bdate=bdate+(a[todayMonth][0]-day_in_month)+bDay;
         cout << "Your birthday will be in " << bdate << " days.";
     }
-    if(bm<mmonth+1){
-        if(mmonth+1==12 && bm==1){
-            bdate=((a[mmonth%11][0]-mdate)+day);
+    if(b_month_number<todayMonth+1){
+        if(todayMonth+1==12 && b_month_number==1){
+            bdate=((a[todayMonth%11][0]-day_in_month)+bDay);
             cout << "Your birthday will be in " << bdate << " days.";
         }
         else{
-            for(int i=mmonth+1;i<(bm+mmonth);i++){
+            for(int i=todayMonth+1;i<(b_month_number+todayMonth);i++){
                 bdate=bdate+a[i%12][0];
             }
-            bdate=bdate+(a[mmonth][0]-mdate)+day;
+            bdate=bdate+(a[todayMonth][0]-day_in_month)+bDay;
             cout << "Your birthday will be in " << bdate << " days.";
         }
     }
