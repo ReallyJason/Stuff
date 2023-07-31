@@ -25,6 +25,8 @@ void birthday (){
     
     cout << "When is your birthday? ";
     cin >> month >> day >> year;
+    
+    {
     if (month=="January"){
         if(day>31 || day<1){
             cout << "The day of your birth month is impossible.";
@@ -113,9 +115,9 @@ void birthday (){
         cout << "You've incorrectly spelled the month.";
         exit(0);
     }
-    
+    }
     if(bm<mmonth+1){
-        if(((ThisYear+1 % 4 == 0) && (ThisYear+1 % 100 != 0)) || (ThisYear+1 % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
+        if((((ThisYear+1) % 4 == 0) && ((ThisYear+1) % 100 != 0)) || ((ThisYear+1) % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
         else int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     }
     else{
@@ -147,7 +149,6 @@ void birthday (){
         else{
             for(int i=mmonth+1;i<(bm+mmonth);i++){
                 bdate=bdate+a[i%12][0];
-                cout << bdate << endl;
             }
             bdate=bdate+(a[mmonth][0]-mdate)+day;
             cout << "Your birthday will be in " << bdate << " days.";
