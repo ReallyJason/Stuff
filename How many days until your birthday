@@ -148,7 +148,7 @@ void birthday (){
             cout << "Your birthday will be in " << bdate << " days.";
         }
         else{
-            for(int i=1;i<(b_month_number+todayMonth-2);i++){
+            for(int i=1;i<(b_month_number+todayMonth-3);i++){
                 bdate=bdate+a[i%12][0];
             }
             bdate=bdate+(a[todayMonth][0]-day_in_month)+bDay;
