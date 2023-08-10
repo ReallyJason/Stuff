@@ -20,7 +20,7 @@ void birthday (){
     std::time_t t = std::time(nullptr);
     std::tm *const pTInfo = std::localtime(&t);
     int day_in_month=pTInfo->tm_mday; //day in the month
-    int todayMonth=pTInfo->tm_mon; //the #month-1
+    int todayMonth=(pTInfo->tm_mon)+1; //the #month-1
     int thisYear=(1900 + pTInfo->tm_year); //tm_year shows the number of years since 1900
     
     cout << "When is your birthday? ";
@@ -117,7 +117,7 @@ void birthday (){
     }
     }
     
-    if(b_month_number<todayMonth+1){
+    if(b_month_number<todayMonth){
         if((((thisYear+1) % 4 == 0) && ((thisYear+1) % 100 != 0)) || ((thisYear+1) % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
         else int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     }
@@ -127,31 +127,31 @@ void birthday (){
     }
     static int bdate=0;
     
-    if(b_month_number==todayMonth+1){
+    if(b_month_number==todayMonth){
         if(day_in_month>bDay)cout << "Your birthday will be in " << (bDay-day_in_month+365) << " days.";
         if(day_in_month<bDay)cout << "Your birthday will be in " << bDay-day_in_month << " days.";
         if(day_in_month==bDay)cout << "Today is your birthday!";
     }
-    if(b_month_number>todayMonth+1){
-        if(b_month_number-todayMonth==2){
-            bdate=((a[todayMonth][0]-day_in_month)+bDay);
+    if(b_month_number>todayMonth){
+        if(b_month_number-todayMonth-1==2){
+            bdate=((a[todayMonth-1][0]-day_in_month)+bDay);
             cout << "Your birthday will be in " << bdate << " days.";
             exit(0);
         }
-        else for(int i=todayMonth+1;i<b_month_number-1;i++)bdate=bdate+a[i][0];
-        bdate=bdate+(a[todayMonth][0]-day_in_month)+bDay;
+        else for(int i=todayMonth;i<b_month_number-1;i++)bdate=bdate+a[i][0];
+        bdate=bdate+(a[todayMonth-1][0]-day_in_month)+bDay;
         cout << "Your birthday will be in " << bdate << " days.";
     }
-    if(b_month_number<todayMonth+1){
-        if(todayMonth+1==12 && b_month_number==1){
-            bdate=((a[todayMonth%11][0]-day_in_month)+bDay);
+    if(b_month_number<todayMonth){
+        if(todayMonth==12 && b_month_number==1){
+            bdate=((a[(todayMonth-1)%11][0]-day_in_month)+bDay);
             cout << "Your birthday will be in " << bdate << " days.";
         }
         else{
-            for(int i=0;i<abs(11-todayMonth+b_month_number-1);i++){
+            for(int i=0;i<abs(12-todayMonth+b_month_number-1);i++){
                 bdate=bdate+a[(b_month_number+i)%12][0];
             }
-            bdate=bdate+(a[todayMonth][0]-day_in_month)+bDay;
+            bdate=bdate+(a[todayMonth-1][0]-day_in_month)+bDay;
             cout << "Your birthday will be in " << bdate << " days.";
         }
     }
