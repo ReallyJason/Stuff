@@ -22,7 +22,6 @@ void birthday (){
     int day_in_month=pTInfo->tm_mday; //day in the month
     int todayMonth=(pTInfo->tm_mon)+1; //the #month-1
     int thisYear=(1900 + pTInfo->tm_year); //tm_year shows the number of years since 1900
-    todayMonth=11;
     
     cout << "When is your birthday? ";
     cin >> bMonth >> bDay >> bYear;
