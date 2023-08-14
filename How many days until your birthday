@@ -10,6 +10,7 @@ void birthday (){
     string bMonth;
     int bDay, bYear, b_month_number=100;
     int a[12][1];
+    static int bdate=0;
     string nameMonth[12]={{"January"},{"February"},{"March"},{"April"},{"May"},{"June"},{"July"},{"August"},{"September"},{"October"},{"November"},{"December"}};
     int numbMonth[12]={{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}};
     int valDate[12]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
@@ -51,7 +52,6 @@ void birthday (){
         if(((thisYear % 4 == 0) && (thisYear % 100 != 0)) || (thisYear % 400 == 0)) int a[12][1]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}}; 
         else int a[12][1]={{31},{28},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     }
-    static int bdate=0;
     
     if(b_month_number==todayMonth){
         if(day_in_month>bDay)cout << "Your birthday will be in " << (bDay-day_in_month+365) << " days.";
