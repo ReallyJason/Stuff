@@ -8,26 +8,17 @@ using std::endl;
 
 void birthday (){
     string bMonth;
-    int bDay, bYear, b_month_number=100;
+    int bDay, bYear, day_in_month, todayMonth, thisYear, b_month_number=100;
     int a[12][1];
     static int bdate=0;
     string nameMonth[12]={{"January"},{"February"},{"March"},{"April"},{"May"},{"June"},{"July"},{"August"},{"September"},{"October"},{"November"},{"December"}};
     int numbMonth[12]={{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}};
     int valDate[12]={{31},{29},{31},{30},{31},{30},{31},{31},{30},{31},{30},{31}};
     
-    setenv("TZ", "EST5EDT", 1); // Set the timezone to Eastern Time (ET)
-    tzset(); // Apply the changes
-    time_t currentTime; // Get the current time in Eastern Time
-    time(&currentTime);
-    struct tm *localTime = localtime(&currentTime); // Convert the time to local time (Eastern Time)
+    cout << "What is the earlier date? ";
+    cin >> day_in_month >> todayMonth >> thisYear;
     
-    std::time_t t = std::time(nullptr);
-    std::tm *const pTInfo = std::localtime(&t);
-    int day_in_month=pTInfo->tm_mday; //day in the month
-    int todayMonth=(pTInfo->tm_mon)+1; //the #month-1
-    int thisYear=(1900 + pTInfo->tm_year); //tm_year shows the number of years since 1900
-    
-    cout << "When is your birthday? ";
+    cout << "What is the later date? ";
     cin >> bMonth >> bDay >> bYear;
     
     for(int i=0;i<12;i++){
