@@ -37,8 +37,6 @@ int main(){
     
     xdif=bigx-smallx;
     zdif=bigz-smallz;
-    cout << xdif << endl;
-    cout << zdif << endl;
     
     if(xdif%2==1){
         mcoord1x=(xdif/2)+smallx;
