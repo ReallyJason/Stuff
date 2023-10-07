@@ -20,11 +20,9 @@ int main(){
     int mcoord2z=(zdif/2)+smallz+1;
 
     cout << "The coords in the middle are "<< mcoord1x << " " << mcoord1z << "." << endl;
-    if(xdif%2==1 && (zdif==0 || zdif%2==0)){
-        cout << "The coords in the middle are "<< mcoord2x << " " << mcoord1z << "." << endl;
-    }else if(zdif%2==1 && (xdif==0 || xdif%2==0)){
-        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
-    }else if(xdif%2==1 && zdif%2==1){
+    if(xdif%2==1 && (zdif==0 || zdif%2==0))cout << "The coords in the middle are "<< mcoord2x << " " << mcoord1z << "." << endl;
+    else if(zdif%2==1 && (xdif==0 || xdif%2==0))cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
+    else if(xdif%2==1 && zdif%2==1){
         cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
         cout << "The coords in the middle are "<< mcoord2x << " " << mcoord1z << "." << endl;
         cout << "The coords in the middle are "<< mcoord2x << " " << mcoord2z << "." << endl;
