@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-    double coord1x, coord1z, coord2x, coord2z, xdif, zdif, mcoordx, mcoordz, smallx, bigx, smallz, bigz;
-    int mcoord1x, mcoord2x, mcoord1z, mcoord2z;
+    double coord1x, coord1z, coord2x, coord2z, mcoordx, mcoordz, smallx, bigx, smallz, bigz;
+    int mcoord1x, mcoord2x, mcoord1z, mcoord2z, xdif, zdif;
     
     cout << "What are the first coords: ";
     cin >> coord1x >> coord1z;
@@ -26,6 +26,15 @@ int main(){
         bigz=coord2z;
         smallz=coord1z;
     }
+    if(coord1x==coord2x){
+        bigx=coord1x;
+        smallx=coord2x;
+    }
+    if(coord1z==coord2z){
+        bigz=coord2z;
+        smallz=coord1z;
+    }
+    
     xdif=bigx-smallx;
     zdif=bigz-smallz;
     if(xdif%2==1){
@@ -41,9 +50,35 @@ int main(){
         mcoordz=(zdif/2)+smallz;
         cout << "The coords in the middle are "<< mcoordx << " " << mcoordz << ".";
     }
+    if(xdif%2==0 && xdif==0){
+        mcoord1x=(xdif/2)+smallx;
+        mcoord1z=(zdif/2)+smallz;
+    }
+    if(zdif%2==0 && zdif==0){
+        mcoord2x=(xdif/2)+smallx;
+        mcoord2z=(zdif/2)+smallz;
+    }
+    if(xdif==0){
+        mcoord1x=(xdif/2)+smallx;
+        mcoord1z=(zdif/2)+smallz;
+    }
+    if(zdif==0){
+        mcoord2x=(xdif/2)+smallx;
+        mcoord2z=(zdif/2)+smallz;
+    }
     if(xdif%2==1 && zdif%2==1){
-        cout << "The coords in the middle are "<< mcoordx << " " << mcoordz << ".";
+        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord1z << "." << endl;
+        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
+        cout << "The coords in the middle are "<< mcoord2x << " " << mcoord1z << "." << endl;
+        cout << "The coords in the middle are "<< mcoord2x << " " << mcoord2z << "." << endl;
     }
-    
+    if(xdif%2==1 && zdif==0){
+        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
+        cout << "The coords in the middle are "<< mcoord2x+1 << " " << mcoord2z << "." << endl;
+    }
+    if(zdif%2==1 && xdif==0){
+        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord1z << "." << endl;
+        cout << "The coords in the middle are "<< mcoord1x << " " << mcoord2z << "." << endl;
+    }
     return 0;
-    }
+}
