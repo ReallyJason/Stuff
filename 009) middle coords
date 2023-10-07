@@ -2,20 +2,18 @@
 using namespace std;
 
 int main(){
-    double coord1x, coord1z, coord2x, coord2z;
+    int coord1x, coord1z, coord2x, coord2z;
     
     cout << "What are the first coords: ";
     cin >> coord1x >> coord1z;
     cout << "What are the second coords: ";
     cin >> coord2x >> coord2z;
     
-    double bigx = max(coord1x, coord2x);
-    double smallx = min(coord1x, coord2x);
-    double bigz = max(coord1z, coord2z);
-    double smallz = min(coord1z, coord2z);
+    int smallx = min(coord1x, coord2x);
+    int smallz = min(coord1z, coord2z);
 
-    int xdif=bigx-smallx;
-    int zdif=bigz-smallz;
+    int xdif=max(coord1x, coord2x)-smallx;
+    int zdif=max(coord1z, coord2z)-smallz;
     int mcoord1x=(xdif/2)+smallx;
     int mcoord2x=(xdif/2)+smallx+1;
     int mcoord1z=(zdif/2)+smallz;
