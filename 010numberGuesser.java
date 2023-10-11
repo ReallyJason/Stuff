@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class 010numberGuesser.java{
+public class 010numberGuesser{
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int diff=50, chance=50;
